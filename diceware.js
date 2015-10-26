@@ -19,7 +19,7 @@ function generatePassPhrase(len) {
   DICE.times(input).forEach(function(n) {
     pw.push(dict[n]);
   });
-  return pw.join(' ');å
+  return pw.join(' ');
 }
 
 console.log(generatePassPhrase(arg));
