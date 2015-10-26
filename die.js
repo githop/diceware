@@ -33,9 +33,9 @@ var Die = function(sides) {
   //e.g. generateDicewareNums(2) => ['34253', '22431']
 
   function generateDicewareNums(n, p) {
-    if (p === undefined) {
-      p = 5;
-    }
+    if (p == undefined) p = 5;
+    if (n == undefined) n = 5;
+
     var t = [];
     for (var i = 0; i < n; i++) {
       t.push(_rolls(p));
