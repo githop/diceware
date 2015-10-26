@@ -5,23 +5,23 @@
 
 //who needs prototypes anyway?
 var Die = function(sides) {
-  var sides = sides || 6;
+  var _sides = sides || 6;
 
   //'rolls' a die one time
   //returns int range 1-6 (or input side length)
 
-  function roll() {
-    return 1 + Math.floor(Math.random() * sides);
+  function _roll() {
+    return 1 + Math.floor(Math.random() * _sides);
   }
 
   //'rolls' a single die n times,
   //returns results of each roll as single string
   //e.g. rolls(3) => '243';
 
-  function rolls(n) {
+  function _rolls(n) {
     var rls = [];
     for (var i = 0; i < n; i++) {
-      rls.push(roll());
+      rls.push(_roll());
     }
     return rls.join('');
   }
@@ -38,16 +38,13 @@ var Die = function(sides) {
     }
     var t = [];
     for (var i = 0; i < n; i++) {
-      t.push(rolls(p));
+      t.push(_rolls(p));
     }
     return t;
   }
 
-  return {
-    roll: roll,
-    rolls: rolls,
-    generateDicewareNums: generateDicewareNums
-  };
+  return generateDicewareNums;
+
 
 };
 

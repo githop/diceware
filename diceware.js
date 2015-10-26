@@ -1,6 +1,7 @@
 var dict = require('./wordsHandler');
-var Die = require('./die')();
+var dieGen = require('./die');
 var arg = process.argv[2];
+var generateDicewareNums = dieGen();
 
 //uses Die and dict modules to simulate
 //the process of using diceware to generate passwords
@@ -16,7 +17,7 @@ function generatePassPhrase(len) {
     input = 5;
   }
 
-  return Die.generateDicewareNums(input).reduce(function(pw, current) {
+  return generateDicewareNums(input).reduce(function(pw, current) {
     var word = ' ' + dict[current] + ' ';
     return pw +=  word;
   }, '');
