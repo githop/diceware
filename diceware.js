@@ -1,17 +1,25 @@
 var dict = require('./wordsHandler');
-var Dice = require('./die');
+var Die = require('./die');
+var arg = process.argv[2];
+var DICE = new Die();
 
-function fiveLenPass() {
-  var Die = new Dice();
+(arg == undefined) ? arg = 5 : arg;
+
+function generatePassPhrase(len) {
   var pw = [];
   //the dict is a JS object where the key is a five digit int
   //and the val is the word
   //To get a word from the dict, roll a 6 sided dice 5 times
   //to generate a key to fetch the word with.
-  Die.times(5).forEach(function(n) {
+  var input = parseInt(len, 0);
+  if (isNaN(input)) {
+    console.log('First Param must be a Number!\n\nUsing default (5) password length.\n');
+    input = 5;
+  }
+  DICE.times(input).forEach(function(n) {
     pw.push(dict[n]);
   });
-  return pw.join(' ');
+  return pw.join(' ');å
 }
 
-console.log(fiveLenPass());
+console.log(generatePassPhrase(arg));
