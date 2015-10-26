@@ -5,8 +5,8 @@ var arg = process.argv[2];
 //uses Die and dict modules to simulate
 //the process of using diceware to generate passwords
 //accepts num param to set length of generated pw.
+//returns string of words
 function generatePassPhrase(len) {
-  var pw = [];
 
   if (len == undefined) len = 5;
   var input = parseInt(len, 0);
@@ -16,11 +16,11 @@ function generatePassPhrase(len) {
     input = 5;
   }
 
-  Die.generateDicewareNums(input).forEach(function(n) {
-    pw.push(dict[n]);
-  });
-
-  return pw.join(' ');
+  return Die.generateDicewareNums(input).reduce(function(pw, current) {
+    var word = ' ' + dict[current] + ' ';
+    return pw +=  word;
+  }, '');
 }
 
 console.log(generatePassPhrase(arg));
+
